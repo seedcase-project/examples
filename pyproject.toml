@@ -1,0 +1,37 @@
+[tool.poetry]
+name = "seedcase examples"
+version = "0.1.0"
+description = "Showing how Seedcase Sprout works"
+authors = [
+  "Luke W. Johnston <lwjohnst@gmail.com>",
+  "Kristiane Beicher <kris.beicher@clin.au.dk>",
+  "Signe Kirk Brødbæk <signekb@clin.au.dk>",
+  "Marton Vago <marton.vago95@gmail.com >",
+]
+maintainers = [
+  "Luke W. Johnston <lwjohnst@gmail.com>",
+  "Kristiane Beicher <kris.beicher@clin.au.dk>",
+  "Signe Kirk Brødbæk <signekb@clin.au.dk>",
+  "Marton Vago <marton.vago95@gmail.com >",
+]
+license = "MIT"
+readme = "README.md"
+repository = "https://github.com/seedcase-project/examples"
+
+[tool.poetry.urls]
+"Bug Tracker" = "https://github.com/seedcase-project/REPO/issues"
+
+[tool.poetry.dependencies]
+python = "^3.12"
+polars = "^1.5.0"
+
+[tool.poetry.group.test.dependencies]
+pytest = "^8.3.2"
+
+[tool.poetry.group.dev.dependencies]
+ruff = "^0.6.2"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
