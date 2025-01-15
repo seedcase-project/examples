@@ -1,7 +1,7 @@
 from pathlib import Path
 from shutil import copytree
 
-folder_name = 'test-folder-1'
+folder_name = 'seed-bank-dynamics'
 
 source = Path.cwd()
 destination = source.parent / folder_name
