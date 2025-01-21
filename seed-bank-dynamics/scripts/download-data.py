@@ -9,7 +9,6 @@ from pathlib import Path
 
 import requests
 
-# testing male-seed-beetle returned with print(f'{script_dir}')
 resource_dir = Path(__file__).resolve().parent.parent
 
 folder_path = resource_dir / "data-raw"
