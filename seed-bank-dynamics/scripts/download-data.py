@@ -13,11 +13,20 @@ resource_dir = Path(__file__).resolve().parent.parent
 
 folder_path = resource_dir / "data-raw"
 
-url = "https://zenodo.org/records/4965431/files/Expe3Abundance.csv?download=1"
+url3a = "https://zenodo.org/records/4965431/files/Expe3Abundance.csv?download=1"
 
-raw_data = requests.get(url, allow_redirects=True)
+raw_data3a = requests.get(url3a, allow_redirects=True)
 
-file_path = folder_path / "data.csv"
+file_path = folder_path / "data3a.csv"
 
 with open(file_path, "wb") as file:
-    file.write(raw_data.content)
+    file.write(raw_data3a.content)
+
+url3b = "https://zenodo.org/records/4965431/files/Expe3Richness.csv?download=1"
+
+raw_data3b = requests.get(url3b, allow_redirects=True)
+
+file_path = folder_path / "data3b.csv"
+
+with open(file_path, "wb") as file:
+    file.write(raw_data3b.content)
