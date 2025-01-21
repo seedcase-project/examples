@@ -1,23 +1,9 @@
-"""Downloads a data file from a given URL.
+from functions.data_download import download_data
 
-This is the most basic of the download data scripts. It requires that the url for
-the data is provided as an argument, and it assumes that a data-raw folder
-has been created containing a .gitignore file.
-"""
+if __name__ == "__main__":
+   # Provide the two arguments needed for download_data
+    arg1 = "https://zenodo.org/records/4932381/files/BeetleMetabolicRate_Dryad.txt?download=1"  # Replace with your actual argument
+    arg2 = "data.csv"  # Replace with your actual argument
 
-from pathlib import Path
-
-import requests
-
-resource_dir = Path(__file__).resolve().parent.parent
-
-folder_path = resource_dir / "data-raw"
-
-url = "https://zenodo.org/records/4932381/files/BeetleMetabolicRate_Dryad.txt?download=1"
-
-raw_data = requests.get(url, allow_redirects=True)
-
-file_path = folder_path / "data.tsv"
-
-with open(file_path, "wb") as file:
-    file.write(raw_data.content)
+    # Call the download_data function
+    download_data(arg1, arg2)
