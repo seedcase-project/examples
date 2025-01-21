@@ -9,10 +9,8 @@ from pathlib import Path
 
 import requests
 
-# testing male-seed-beetle returned with print(f'{script_dir}')
 resource_dir = Path(__file__).resolve().parent.parent
 
-# testing male-seed-beetle/data-raw returned with print(f'{folder_path}')
 folder_path = resource_dir / "data-raw"
 
 url = "https://zenodo.org/records/4965431/files/Expe3Abundance.csv?download=1"
