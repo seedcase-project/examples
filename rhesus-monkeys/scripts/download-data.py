@@ -31,20 +31,30 @@ def download_data(url, name):
 if __name__ == "__main__":
     # Define lists of URLs and corresponding filenames
     urls = [
-        "https://zenodo.org/records/7055715/files/Concentration_Infant.blood.csv?download=1", #1
+        "https://zenodo.org/records/7055715/files/Concentration_Infant.blood.csv?download=1", #01
         "https://zenodo.org/records/7055715/files/Concentration_Infant.urine.csv?download=1",
         "https://zenodo.org/records/7055715/files/Concentration_Maternal.blood.csv?download=1",
         "https://zenodo.org/records/7055715/files/Concentration_Maternal.placenta.csv?download=1",
-        "https://zenodo.org/records/7055715/files/Concentration_Maternal.urine.csv?download=1", #5
-        "https://zenodo.org/records/7055715/files/Cortisol_infant.blood.xlsx?download=1"
+        "https://zenodo.org/records/7055715/files/Concentration_Maternal.urine.csv?download=1", #05
+        "https://zenodo.org/records/7055715/files/Cortisol_infant.blood.xlsx?download=1",
+        "https://zenodo.org/records/7055715/files/Metadata_Infant.blood.csv?download=1",
+        "https://zenodo.org/records/7055715/files/Metadata_Infant.urine.csv?download=1",
+        "https://zenodo.org/records/7055715/files/Metadata_Maternal.blood.csv?download=1",
+        "https://zenodo.org/records/7055715/files/Metadata_Maternal.urine.csv?download=1", #10
+        "https://zenodo.org/records/7055715/files/Metadata_Maternal.placenta.csv?download=1"
     ]
     names = [
-        "data1.csv",
-        "data2.csv",
-        "data3.csv",
-        "data4.csv",
-        "data5.csv",
-        "data6.xlsx"
+        "data01.csv",
+        "data02.csv",
+        "data03.csv",
+        "data04.csv",
+        "data05.csv",
+        "data06.xlsx",
+        "data07.csv",
+        "data08.csv",
+        "data09.csv",
+        "data10.csv",
+        "data11.csv"
     ]
 
     # Loop through the URLs and names and call the function for each pair
