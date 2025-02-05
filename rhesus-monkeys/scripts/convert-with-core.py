@@ -69,6 +69,11 @@ df5 = df.select(pl.col("Infant_ID").alias("infant_id"), pl.col("PD").alias("post
 
 df5.write_csv('../data-raw/data-infant-ready.csv')
 
+# 9 Meta maternal blood
+# Batch,Dilution_factor
+# 10 Meta maternal urine
+# Batch,Dilution_factor
+
 
 # 02 - Concentration_Infant.urine.csv
     # Transpose data
