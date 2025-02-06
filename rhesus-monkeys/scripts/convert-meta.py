@@ -15,7 +15,7 @@ df_infant = df07.select(pl.col("Infant_ID"), pl.col("Mother_ID"), pl.col("GD_Del
 , pl.col("Fostered"), pl.col("Foster_ID"))
 # infant gender is in data_adult at present
 df_infant1 = df_infant.unique()
-df_infant1.write_csv("../data-raw/data_infant.csv", separator=";")
+df_infant1.write_csv("../data-raw/data_infant_meta.csv", separator=";")
 
 df_infant_w1 = df07.select(pl.col("Infant_ID"), pl.col("Weight_PD7").alias("weight_at_x_days_old"), pl.col("ActualDay_PD7").alias("x_days_old"))
 df_infant_w2 = df08.select(pl.col("Infant_ID"), pl.col("Infant_weight").alias("weight_at_x_days_old"), pl.col("PD").alias("x_days_old"))
@@ -42,7 +42,7 @@ df_adult_w2 = df10.select(pl.col("Mother_ID"), pl.col("GD").alias("sample_gestat
 # Concatenate and de-dup adult files
 df_adult1 = pl.concat([df_adult09, df_adult10])
 df_adult2 = df_adult1.unique()
-df_adult2.write_csv("../data-raw/data_adult.csv", separator=";")
+df_adult2.write_csv("../data-raw/data_adult_meta.csv", separator=";")
 
 df_adultw1 = pl.concat([df_adult_w1, df_adult_w2])
 df_adultw2 = df_adultw1.unique()
@@ -53,9 +53,12 @@ df_adultw2.write_csv("../data-raw/data_adult_weight.csv", separator=";")
 df_link07 = df07.select(pl.col("Infant_ID"), pl.col("Exp"), pl.col("PD").alias("day_sample_taken"), pl.col("Batch"))
 df_link08 = df08.select(pl.col("Infant_ID"), pl.col("Exp"), pl.col("PD").alias("day_sample_taken"), pl.col("Batch"))
 
-df_link09 = df09.select(pl.col("Mother_ID"), pl.col("Exp"), pl.col("GD_day").alias("day_sample_taken"), pl.col("Batch"))
-df_link10 = df10.select(pl.col("Mother_ID"), pl.col("Exp"), pl.col("GD").alias("day_sample_taken"), pl.col("Batch"))
-df_link11 = df11.select(pl.col("Mother_ID"), pl.col("Exp"), pl.col("GD").alias("day_sample_taken"), pl.col("Batch"))
+df_link09 = df09.select(pl.col("Mother_ID"), pl.col("Exp"), pl.col("GD_day").alias("day_sample_taken"), pl.col("GD_targeted").alias("target_sampling_day")
+, pl.col("Batch"), pl.col("Dilution_factor"))
+df_link10 = df10.select(pl.col("Mother_ID"), pl.col("Exp"), pl.col("GD").alias("day_sample_taken"), pl.col("Target_GD").alias("target_sampling_day")
+, pl.col("Batch"), pl.col("Dilution_factor"))
+df_link11 = df11.select(pl.col("Mother_ID"), pl.col("Exp"), pl.col("GD").alias("day_sample_taken"), pl.col("Target_GD").alias("target_sampling_day")
+, pl.col("Batch"), pl.col("Dilution_factor"))
 
 matter1 = "Blood"
 matter2 = "Urine"
@@ -68,14 +71,13 @@ df_lnk4 = df_link10.with_columns(pl.lit(matter2).alias("type_of_matter"))
 df_lnk5 = df_link11.with_columns(pl.lit(matter3).alias("type_of_matter"))
 
 df_infant_link = pl.concat([df_lnk1, df_lnk2])
-df_infant_link.write_csv('../data-raw/data_infant_link.csv')
+df_infant_link.write_csv('../data-raw/data_infant_sample_meta.csv')
 df_adult_link = pl.concat([df_lnk3, df_lnk4, df_lnk5])
-df_adult_link.write_csv('../data-raw/data_adult_link.csv')
+df_adult_link.write_csv('../data-raw/data_adult_sample_meta.csv')
 
 # Create the placenta file
-
-
-
+# Both from 09 (Placenta_Width,Placenta_Height,Placenta_Thickness,EPV) and from 11 (see below)
+# More than one measure in 09?
 '''
 11 - Metadata_Maternal.placenta.csv
 * Variables 
