@@ -41,7 +41,13 @@ if __name__ == "__main__":
         "https://zenodo.org/records/7055715/files/Metadata_Infant.urine.csv?download=1",
         "https://zenodo.org/records/7055715/files/Metadata_Maternal.blood.csv?download=1",
         "https://zenodo.org/records/7055715/files/Metadata_Maternal.urine.csv?download=1", #10
-        "https://zenodo.org/records/7055715/files/Metadata_Maternal.placenta.csv?download=1"
+        "https://zenodo.org/records/7055715/files/Metadata_Maternal.placenta.csv?download=1",
+        "https://zenodo.org/records/7055715/files/Cytokine_Infant.blood.csv?download=1",
+        "https://zenodo.org/records/7055715/files/Cytokine_Maternal.blood.csv?download=1",
+        "https://zenodo.org/records/7055715/files/WB_Infant.brain.csv?download=1",
+        "https://zenodo.org/records/7055715/files/HI_infant.behavior.xlsx?download=1", #15
+        "https://zenodo.org/records/7055715/files/VPC_infant.cognitive.xlsx?download=1",
+        "https://zenodo.org/records/7055715/files/Gestational.weight.gain.rate.csv?download=1"
     ]
     names = [
         "data01.csv",
@@ -54,7 +60,14 @@ if __name__ == "__main__":
         "data08.csv",
         "data09.csv",
         "data10.csv",
-        "data11.csv"
+        "data11.csv",
+        "data12.csv",
+        "data13.csv",
+        "data14.csv",
+        "data15.xlsx",
+        "data16.xlsx",
+        "data17.csv",
+
     ]
 
     # Loop through the URLs and names and call the function for each pair
@@ -193,4 +206,92 @@ o V2: Volume of polar layer (methanol + water) collected (uL). Used to correct t
 o V3: Buffer added to reconstitute the sample after freeze drying (uL). Used to correct the metabolite concentration. 
 * Missing data codes: Indicated by NAs.
 
+12 - Cytokine_Infant.blood
+* Variables: 
+o Exp: Samples IDs. The same “Exp” represent the same sample in Concentration_Infant.blood.csv & Metadata_Infant.blood.csv files.
+o Infant_ID: IDs of infants. 
+o Batch: The experiment was conducted over two batches (Batch1 or Batch2)
+o Group: Lean or Obese.
+o PD: Exact postnatal day (PD) when samples were collected.
+o Target_PD: Target PD for sample collection. 
+o Mother_ID: IDs of mothers.
+o GD_Delivery: Gestational day at delivery. 
+o Mode_birth: Mode of delivery.
+o Fostered: Yes (fostered) or No (was not fostered).
+o Foster_ID: IDs of foster mothers. 
+o Weight_PD7: Infant weights recorded at around PD7.
+o hsCPP, GM_CSF, IFN_g, IL_1b, IL_ra, IL_2, IL_4, IL_5, IL_6, IL_8, IL_10, IL_12.23_p40, IL_13, IL_15, 
+IL_17a, MCP_1, MIP_1b, sCD40L_38, TGFa, TNFa, VEGF, C_Peptide, GIP, Inflammatory markers. 
+o Insulin: Insulin level (pg/mL).
+* Missing data codes: Indicated by NAs.
+* Specialized formats or other abbreviations used: GD, gestational day; BCS, Body Condition Score; 
+GM-CSF, granulocyte-macrophage colony-stimulating factor; IFN- ?, interferon ?; TNF-?, tumor necrosis factor-?; 
+TGF-?, transforming growth factor-?; MCP-1, monocyte chemoattractant protein-1; MIP-1?, macrophage inflammatory protein-1?; 
+hs-CRP, high-sensitivity C-reactive protein; IL, interleukin.
+
+13 - Cytokine_Maternal.blood
+* Variables: 
+o Exp: Samples IDs. The same “Exp” represent the same sample in Concentration_Maternal.blood.csv, Cytokine_Infant.blood.csv, and Metadata_Maternal.blood.csv files.
+o Mother_ID: IDs of mothers. 
+o Batch: The experiment was conducted over two batches (Batch1 or Batch2)
+o Group: Lean or Obese.
+o GD: Exact gestational day (GD) when samples were collected.
+o Target_GD: Target GD for sample collection. 
+o BCS: Body Condition Score (BCS) 
+o hsCPP, GM_CSF, IFN_g, IL_1b, IL_ra, IL_2, IL_6, IL_8, IL_10, IL_12/23_p40, IL_13, IL_15, 
+IL_17a, MCP_1, MIP_1b, sCD40L, TGFa, VEGF, C_Peptide, GIP, PP_53, PYY_54: Inflammatory markers. 
+o Insulin: Insulin level (uU/mL)
+* Missing data codes: Indicated by NAs.
+* Specialized formats or other abbreviations used: GD, gestational day; BCS, Body Condition Score; 
+hs-CRP, high-sensitivity C-reactive protein; GM_CSF, granulocyte-macrophage colony-stimulating factor; 
+IFN- ?, interferon-?; TNF-?, tumor necrosis factor-?; TGF-?, transforming growth factor-?; 
+MCP-1, monocyte chemoattractant protein-1; MIP-1?, macrophage inflammatory protein-1?; IL, interleukin; 
+IL-1ra, IL-1 receptor antagonist.
+
+14 - WB.infant.brain
+* Variables
+o Infant_ID: IDs of infants.
+o Brain_region: Amygdala, Hippocampus, Hypothalamus, P.Cortex (= prefrontal cortex)
+o Group: Lean or Obese.
+o Akt, p.Akt, AMPK, p.AMPK, S6K, p.S6K: Normalized relative intensity levels.
+
+15 - HI_infant.behavior
+* Variables 
+o Infant_ID: IDs of infants. 
+o Group: Lean or Obese.
+o PD: Exact postnatal day (PD) when samples were collected.
+o Mother_ID: IDs of mothers. 
+o Foster_ID: IDs of foster mothers. 
+o Infant_weight: Infant weights (kg) recorded at samples collection. 
+o pfscratch: Profile-Far (technician presented the left profile from ~1 m away from an infant in a cage)
+o pnscratch: Profile-Near (presented left profile from ~0.3 m)
+o sfscratch: Stare-Far (made direct eye contact with the animal from far)
+o snscratch: Stare-Near (direct eye contact from near position)
+* Missing data codes: Indicated by NAs.
+
+16 - VPC_infant_cognitive
+* Variables 
+o Infant_ID: IDs of infants. 
+o Mother_ID: IDs of mothers. 
+o Foster_ID: IDs of foster mothers. 
+o Batch: The experiment was conducted over two batches (Batch1 or Batch2)
+o Group: Lean or Obese.
+o GD_Delivery: Gestational day at delivery. 
+o PCD: post-conception day.
+o PxTx Total number Look RIGHT/LEFT FAM: Total number of looks at a familiar object that was placed right or left side. P stands for the number of problem (1 to 4) and T stands for the number of Trial (1 or 2). 
+o PxTx Total number Look RIGHT/LEFT NOVEL: Total number of looks at a novel object that was placed right or left side. P stands for the number of problem (1 to 4) and T stands for the number of Trial (1 or 2).
+o PxTx Total number Look Away: Total number of looks away from either of the object. P stands for the number of problem (1 to 4) and T stands for the number of Trial (1 or 2).
+o no.looks_N: Total number of looks at novel object throughout the problems and trials. 
+o no.looks_F: Total number of looks at familiar object throughout the problems and trials.
+o no.looks_N+F: Total number of looks at novel and familiar object throughout the problems and trials.
+o no.looks_N/N+F: Novelty preference calculated as: number of fixations at the novel stimulus (no.looks_N)/number of fixations at both the novel and familiar stimulus (no.looks_N+F).
+
+17 - Gestational.weight.gain.rate
+* Variables 
+o Mother_ID: IDs of mothers. 
+o Batch: The experiment was conducted over two batches (Batch1 or Batch2)
+o Group: Lean or Obese.
+o Infant_ID: IDs of infants. 
+o Foster_ID: IDs of foster mothers. 
+o GWG: Gestational weight gain rate. 
 '''
