@@ -25,8 +25,10 @@ df_infant_weight = pl.concat([df_infant_w1, df_infant_w2]).unique().write_csv(fo
 matter1 = "Blood"
 matter2 = "Urine"
 
-df_link_infant1 = df_meta_infant_bl.select(["Infant_ID", "Exp", "PD", "Batch"]).rename({"PD": "day_sample_taken"}).clean_names().with_columns(pl.lit(matter1).alias("type_of_matter"))
-df_link_infant2 = df_meta_infant_ur.select(["Infant_ID", "Exp", "PD", "Batch"]).rename({"PD": "day_sample_taken"}).clean_names().with_columns(pl.lit(matter2).alias("type_of_matter"))
+df_link_infant1 = df_meta_infant_bl.select(["Infant_ID", "Exp", "PD", "Batch"]).rename({"PD": "day_sample_taken"
+, "Exp": "infant_sample_id"}).clean_names().with_columns(pl.lit(matter1).alias("type_of_matter"))
+df_link_infant2 = df_meta_infant_ur.select(["Infant_ID", "Exp", "PD", "Batch"]).rename({"PD": "day_sample_taken"
+, "Exp": "infant_sample_id"}).clean_names().with_columns(pl.lit(matter2).alias("type_of_matter"))
 
 df_infant_link = pl.concat([df_link_infant1, df_link_infant2]).write_csv(folder_path / "data_infant_sample_meta.csv", separator=";") # Concatenate long
 
@@ -55,11 +57,11 @@ df_adult_weight = pl.concat([df_adult_weight1, df_adult_weight2]).unique().write
 matter3 = "Placenta"
 
 df_link_adult1 = df_metadata_maternal_bl.select(["Mother_ID", "Exp", "GD_day", "GD_targeted", "Batch", "Dilution_factor"]).rename({"GD_day": "day_sample_taken"
-, "GD_targeted": "target_sampling_day"}).with_columns(pl.lit(matter1).alias("type_of_matter"))
+, "GD_targeted": "target_sampling_day", "Exp": "adult_sample_id"}).with_columns(pl.lit(matter1).alias("type_of_matter"))
 df_link_adult2 = df_metadata_maternal_ur.select(["Mother_ID", "Exp", "GD", "Target_GD", "Batch", "Dilution_factor"]).rename({"GD": "day_sample_taken"
-, "Target_GD": "target_sampling_day"}).with_columns(pl.lit(matter2).alias("type_of_matter"))
+, "Target_GD": "target_sampling_day", "Exp": "adult_sample_id"}).with_columns(pl.lit(matter2).alias("type_of_matter"))
 df_link_adult3 = df_metadata_maternal_pl.select(["Mother_ID", "Exp", "GD", "Target_GD", "Batch", "Dilution_factor"]).rename({"GD": "day_sample_taken"
-, "Target_GD": "target_sampling_day"}).with_columns(pl.lit(matter3).alias("type_of_matter"))
+, "Target_GD": "target_sampling_day", "Exp": "adult_sample_id"}).with_columns(pl.lit(matter3).alias("type_of_matter"))
 
 df_adult_link = pl.concat([df_link_adult1, df_link_adult2, df_link_adult3]).write_csv(folder_path / "data_adult_sample_meta.csv", separator=";") # Concatenate long
 
