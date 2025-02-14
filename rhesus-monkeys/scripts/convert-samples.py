@@ -14,30 +14,29 @@ def transpose_data(load_file_name, save_file_name, monkey_type):
     df_1a = df_1.transpose(include_header=True, header_name=monkey_type, column_names="Metabolite")
     df_1a.write_csv(folder_path / save_file_name)
 
-if __name__ == "__main__":
-     load_file_names = [
-         "concentration_infant_blood.csv",
-         "concentration_infant_urine.csv",
-         "concentration_maternal_blood.csv",
-         "concentration_maternal_placenta.csv",
-         "concentration_maternal_urine.csv"
-     ]
-     save_file_names = [
-         "data_concentration_infant_blood.csv",
-         "data_concentration_infant_urine.csv",
-         "data_concentration_maternal_blood.csv",
-         "data_concentration_maternal_placenta.csv",
-         "data_concentration_maternal_urine.csv"
-     ]
-     monkey_types = [
-        "infant_sample_id",
-        "infant_sample_id",
-        "adult_sample_id",
-        "adult_sample_id",
-        "adult_sample_id"
-     ]
-     for load_file_name, save_file_name, monkey_type in zip(load_file_names, save_file_names, monkey_types):
-         transpose_data(load_file_name, save_file_name, monkey_type)
+load_file_names = [
+    "concentration_infant_blood.csv",
+    "concentration_infant_urine.csv",
+    "concentration_maternal_blood.csv",
+    "concentration_maternal_placenta.csv",
+    "concentration_maternal_urine.csv"
+]
+save_file_names = [
+    "data_concentration_infant_blood.csv",
+    "data_concentration_infant_urine.csv",
+    "data_concentration_maternal_blood.csv",
+    "data_concentration_maternal_placenta.csv",
+    "data_concentration_maternal_urine.csv"
+]
+monkey_types = [
+"infant_sample_id",
+"infant_sample_id",
+"adult_sample_id",
+"adult_sample_id",
+"adult_sample_id"
+]
+for load_file_name, save_file_name, monkey_type in zip(load_file_names, save_file_names, monkey_types):
+    transpose_data(load_file_name, save_file_name, monkey_type)
 
 # Cortisol data
 df_cortisol_infant_bl = pl.read_excel(unzip_path / "cortisol_infant_blood.xlsx")
