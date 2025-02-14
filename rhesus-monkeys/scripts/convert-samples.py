@@ -1,73 +1,63 @@
 import polars as pl
 import re
 from pathlib import Path
-
-# Convert files from xlsx to csv
-df06 = pl.read_excel("../data-raw/data06.xlsx")
-df06.write_csv('../data-raw/data06.csv')
-df15 = pl.read_excel("../data-raw/data15.xlsx")
-df15.write_csv('../data-raw/data15.csv')
-df16 = pl.read_excel("../data-raw/data16.xlsx")
-df16.write_csv('../data-raw/data16.csv')
-
+import polars.selectors as cs
 
 # Set the folder path for raw-data
 resource_dir = Path(__file__).resolve().parent.parent
 folder_path = resource_dir / "data-raw"
+unzip_path = folder_path / "unzipped"
 
 # Transpose all files with metabolite data
 def transpose_data(load_file_name, save_file_name, monkey_type):
-    df_1 = pl.read_csv(folder_path / load_file_name)
+    df_1 = pl.read_csv(unzip_path / load_file_name)
     df_1a = df_1.transpose(include_header=True, header_name=monkey_type, column_names="Metabolite")
     df_1a.write_csv(folder_path / save_file_name)
 
 if __name__ == "__main__":
      load_file_names = [
-         "data01.csv",
-         "data02.csv",
-         "data03.csv",
-         "data04.csv",
-         "data05.csv"
+         "concentration_infant_blood.csv",
+         "concentration_infant_urine.csv",
+         "concentration_maternal_blood.csv",
+         "concentration_maternal_placenta.csv",
+         "concentration_maternal_urine.csv"
      ]
      save_file_names = [
-         "data01-ready.csv",
-         "data02-ready.csv",
-         "data03-ready.csv",
-         "data04-ready.csv",
-         "data05-ready.csv"
+         "data_concentration_infant_blood.csv",
+         "data_concentration_infant_urine.csv",
+         "data_concentration_maternal_blood.csv",
+         "data_concentration_maternal_placenta.csv",
+         "data_concentration_maternal_urine.csv"
      ]
      monkey_types = [
-        "infant_exp",
-        "infant_exp",
-        "adult_exp",
-        "adult_exp",
-        "adult_exp"
+        "infant_sample_id",
+        "infant_sample_id",
+        "adult_sample_id",
+        "adult_sample_id",
+        "adult_sample_id"
      ]
      for load_file_name, save_file_name, monkey_type in zip(load_file_names, save_file_names, monkey_types):
          transpose_data(load_file_name, save_file_name, monkey_type)
 
-# Cortisol - infants in tidydata format
+# Cortisol data
+df_cortisol_infant_bl = pl.read_excel(unzip_path / "cortisol_infant_blood.xlsx")
 
-df06 = pl.read_csv('../data-raw/data06.csv') 
+df_cortisol = df_cortisol_infant_bl.unpivot(["samp1", "samp2", "samp3", "samp4"], index=["Infant_ID", "PD"])
 
-sample1 = '02:00'
-sample2 = '07:00'
-sample3 = '11:30'
-sample4 = '23:30'
+time_mapping = {"samp1": "02:00", "samp2": "07:00", "samp3": "11:30", "samp4": "23:30"}
 
-df1 = df06.select(pl.col("Infant_ID").alias("infant_exp"), pl.col("PD").alias("post_gestation_day"), pl.col("samp1").alias("cortisol_level"),)
-df2 = df06.select(pl.col("Infant_ID").alias("infant_exp"), pl.col("PD").alias("post_gestation_day"), pl.col("samp2").alias("cortisol_level"),)
-df3 = df06.select(pl.col("Infant_ID").alias("infant_exp"), pl.col("PD").alias("post_gestation_day"), pl.col("samp3").alias("cortisol_level"),)
-df4 = df06.select(pl.col("Infant_ID").alias("infant_exp"), pl.col("PD").alias("post_gestation_day"), pl.col("samp4").alias("cortisol_level"),)
+df_cortisol = df_cortisol.with_columns(
+    pl.col("variable").replace_strict(time_mapping).alias("hours_into_sampling")).select(["Infant_ID"
+    , "PD", "hours_into_sampling", "value"]).rename({"value": "cortisol_level", "Infant_ID": "infant_id"
+    , "PD": "post_gestation_day"}).write_csv('../data-raw/data_infant_cortisol.csv')
 
-df_sample1 = df1.with_columns(pl.lit(sample1).alias("hours_into_sampling"))
-df_sample2 = df2.with_columns(pl.lit(sample2).alias("hours_into_sampling"))
-df_sample3 = df1.with_columns(pl.lit(sample3).alias("hours_into_sampling"))
-df_sample4 = df2.with_columns(pl.lit(sample4).alias("hours_into_sampling"))
 
-df_cortisol = pl.concat([df_sample1, df_sample2, df_sample3, df_sample4])
+'''
+# Convert files from xlsx to csv
 
-df_cortisol.write_csv('../data-raw/data6-ready.csv')
+df15 = pl.read_excel("../data-raw/data15.xlsx")
+df16 = pl.read_excel("../data-raw/data16.xlsx")
+
 
 # Cytokine data both sets
 df12 = pl.read_csv(folder_path / "data12.csv")
@@ -233,3 +223,4 @@ df_cognitive.write_csv('../data-raw/data16-ready.csv')
 # 10 Meta maternal urine
   # Batch,Dilution_factor
 # Check if there are more weight measures to be found in 15
+'''

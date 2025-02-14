@@ -6,11 +6,12 @@ import janitor.polars
 # Set the folder path for raw-data
 resource_dir = Path(__file__).resolve().parent.parent
 folder_path = resource_dir / "data-raw"
+unzip_path = folder_path / "unzipped"
 
 # Create the infant metadata files
     # FIO All infants in meta_infant_ur are included in meta_infant_bl. There is one extra infant in meta_infant_bl.
-df_meta_infant_bl = pl.read_csv(folder_path / "metadata_infant_blood.csv") 
-df_meta_infant_ur = pl.read_csv(folder_path / "metadata_infant_urine.csv") 
+df_meta_infant_bl = pl.read_csv(unzip_path / "metadata_infant_blood.csv") 
+df_meta_infant_ur = pl.read_csv(unzip_path / "metadata_infant_urine.csv") 
 
 df_infant = df_meta_infant_bl.select(["Infant_ID", "Mother_ID", "GD_Delivery", "Fostered"
 , "Foster_ID"]).rename({"GD_Delivery": "gestation_day_delivery"}).unique().clean_names().write_csv(folder_path / "data_infant_meta.csv", separator=";")
@@ -34,9 +35,9 @@ df_infant_link = pl.concat([df_link_infant1, df_link_infant2]).write_csv(folder_
 
 # Create the adult metadata files
     # FIO There are no additional Mother_ID in file 11
-df_metadata_maternal_bl = pl.read_csv(folder_path / "metadata_maternal_blood.csv")
-df_metadata_maternal_ur = pl.read_csv(folder_path / "metadata_maternal_urine.csv")
-df_metadata_maternal_pl = pl.read_csv(folder_path / "metadata_maternal_placenta.csv")
+df_metadata_maternal_bl = pl.read_csv(unzip_path / "metadata_maternal_blood.csv")
+df_metadata_maternal_ur = pl.read_csv(unzip_path / "metadata_maternal_urine.csv")
+df_metadata_maternal_pl = pl.read_csv(unzip_path / "metadata_maternal_placenta.csv")
 
 df_adult_meta1 = df_metadata_maternal_bl.select(["Mother_ID", "Mother_age", "GD_Delivery", "Group", "Mode_birth", "Reject", "Infant_sex"]).rename({"Mother_age": "Age_at_conception"
 , "GD_Delivery": "gestation_day_at_delivery", "Group": "obesity_classification", "Mode_birth": "mode_of_birth"}).clean_names()
