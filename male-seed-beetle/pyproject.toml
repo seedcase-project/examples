@@ -1,0 +1,15 @@
+[tool.poetry]
+name = "male-seed-beetle"
+version = "0.1.0"
+description = ""
+authors = ["Kris Beicher <112945740+K-Beicher@users.noreply.github.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.12"
+seedcase-sprout = {git = "https://github.com/seedcase-project/seedcase-sprout.git"}
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

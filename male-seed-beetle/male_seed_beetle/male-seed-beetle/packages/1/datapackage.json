@@ -1,0 +1,58 @@
+{
+  "name": "male-seed-beetle",
+  "id": "f5b756d3-d6e0-4287-b362-d0726f656b6d",
+  "title": "Complex mitonuclear interactions and metabolic costs of mating in male seed beetles",
+  "description": "Data from the 2015 on metabolic rate, respiratory quotient, body weight and ejaculate weight data from seed beetles with different mitonuclear genotypes.",
+  "version": "0.1.0",
+  "created": "2025-02-17T14:19:36+01:00",
+  "contributors": [
+    {
+      "title": "Elina Immonen",
+      "path": "https://www.uu.se/en/contact-and-organisation/staff?query=N12-1639",
+      "roles": [
+        "creator"
+      ]
+    },
+    {
+      "title": "Johanna Liljestrand-R\u00f6nn",
+      "path": "https://www.uu.se/en/contact-and-organisation/staff?query=N2-1345",
+      "roles": [
+        "creator"
+      ]
+    },
+    {
+      "title": "Christopher Watson",
+      "path": "https://www.uu.se/en/department/ecology-and-genetics/research/evolutionary-biology/immonen-lab",
+      "roles": [
+        "creator"
+      ]
+    },
+    {
+      "title": "David Berger",
+      "path": "https://www.uu.se/en/contact-and-organisation/staff?query=N11-2446",
+      "roles": [
+        "creator"
+      ]
+    },
+    {
+      "title": "G\u00f6ran Arnqvist",
+      "path": "https://www.uu.se/en/contact-and-organisation/staff?query=N1-1284",
+      "roles": [
+        "creator"
+      ]
+    }
+  ],
+  "licenses": [
+    {
+      "name": "CCO_1.0",
+      "path": "https://creativecommons.org/publicdomain/zero/1.0/legalcode",
+      "title": "CCO 1.0 UNIVERSAL"
+    }
+  ],
+  "sources": [
+    {
+      "title": "Complex mitonuclear interactions and metabolic costs of mating in male seed beetles",
+      "path": "https://zenodo.org/record/4932381"
+    }
+  ]
+}
