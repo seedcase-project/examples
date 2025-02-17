@@ -1,6 +1,7 @@
-import seedcase_sprout.core as sp
 import os
 import pathlib
+
+import seedcase_sprout.core as sp
 
 os.environ["SPROUT_GLOBAL"] = "./male-seed-beetle"
 
@@ -12,9 +13,33 @@ properties = sp.PackageProperties(
     description="Data from the 2015 on metabolic rate, respiratory quotient, body weight and ejaculate weight data from seed beetles with different mitonuclear genotypes.",
     contributors=[
         sp.ContributorProperties(
-            title="Jane Doe Test",
-            email="Jane.Doe@test.com",
-            path="example.com/jamie_jones",
+            title="Elina Immonen",
+            email="",
+            path="https://www.uu.se/en/contact-and-organisation/staff?query=N12-1639",
+            roles=["creator"],
+        )
+        sp.ContributorProperties(
+            title="Johanna Liljestrand-Rönn",
+            email="",
+            path="https://www.uu.se/en/contact-and-organisation/staff?query=N2-1345",
+            roles=["creator"],
+        )
+        sp.ContributorProperties(
+            title="Christopher Watson",
+            email="",
+            path="https://www.uu.se/en/department/ecology-and-genetics/research/evolutionary-biology/immonen-lab",
+            roles=["creator"],
+        )
+        sp.ContributorProperties(
+            title="David Berger",
+            email="",
+            path="https://www.uu.se/en/contact-and-organisation/staff?query=N11-2446",
+            roles=["creator"],
+        )
+        sp.ContributorProperties(
+            title="Göran Arnqvist",
+            email="",
+            path="https://www.uu.se/en/contact-and-organisation/staff?query=N1-1284",
             roles=["creator"],
         )
     ],
@@ -22,17 +47,17 @@ properties = sp.PackageProperties(
         sp.LicenseProperties(
             name="CCO_1.0",
             path="https://creativecommons.org/publicdomain/zero/1.0/legalcode",
+            source="https://zenodo.org/record/4932381",
             title="CCO 1.0 UNIVERSAL",
         )
     ],
 )
 
 package_properties = sp.edit_package_properties(
-  path=sp.path_properties(package_id=1),
-  properties=properties,
+    path=sp.path_properties(package_id=1),
+    properties=properties,
 )
 
 package_path = sp.write_package_properties(
-  properties=package_properties,
-  path=sp.path_properties(package_id=1)
+    properties=package_properties, path=sp.path_properties(package_id=1)
 )
