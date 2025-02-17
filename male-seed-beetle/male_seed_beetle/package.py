@@ -5,12 +5,19 @@ import seedcase_sprout.core as sp
 
 os.environ["SPROUT_GLOBAL"] = "./male-seed-beetle"
 
-package_paths = sp.create_package_structure(path=sp.path_packages())
+# package_paths = sp.create_package_structure(path=sp.path_packages())
 
 properties = sp.PackageProperties(
     name="male-seed-beetle",
-    title="Complex mitonuclear interactions and metabolic costs of mating in male seed beetles",
-    description="Data from the 2015 on metabolic rate, respiratory quotient, body weight and ejaculate weight data from seed beetles with different mitonuclear genotypes.",
+    title=(
+        "Complex mitonuclear interactions and metabolic costs of mating "
+        "in male seed beetles"
+    ),
+    description=(
+        "Data from the 2015 on metabolic rate, respiratory quotient, body "
+        "weight and ejaculate weight data from seed beetles with different "
+        "mitonuclear genotypes."
+    ),
     contributors=[
         sp.ContributorProperties(
             title="Elina Immonen",
@@ -41,8 +48,8 @@ properties = sp.PackageProperties(
     sources=[
         sp.SourceProperties(
             title=(
-                "Complex mitonuclear interactions and metabolic costs "
-                "of mating in male seed beetles"
+                "Complex mitonuclear interactions and metabolic costs of mating "
+                "in male seed beetles"
             ),
             path="https://zenodo.org/record/4932381",
         )
